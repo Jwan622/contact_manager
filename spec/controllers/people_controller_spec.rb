@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe PeopleController, :type => :controller do
+RSpec.describe PeopleController, :type => :controller do ###controller loads up extra methods like put and get
 
   # This should return the minimal set of attributes required to create a valid
   # Person. As you add validations to Person, be sure to
@@ -116,7 +116,7 @@ RSpec.describe PeopleController, :type => :controller do
 
       it "assigns the requested person as @person" do
         person = Person.create! valid_attributes
-        put :update, {:id => person.to_param, :person => valid_attributes}, valid_session
+        put :update, {:id => person.to_param, :person => valid_attributes}, valid_session   #put method is accessing the controller, accessing the named action with 3 arguments, 1st is the method I want to call, 
         expect(assigns(:person)).to eq(person)
       end
 
