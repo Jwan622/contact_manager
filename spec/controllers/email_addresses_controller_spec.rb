@@ -24,7 +24,7 @@ RSpec.describe EmailAddressesController, :type => :controller do
   # EmailAddress. As you add validations to EmailAddress, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { address: "Jwan622@gmail.com" }
+    { address: "Jwan622@gmail.com", person_id: 1}
   }
 
   let(:invalid_attributes) {
