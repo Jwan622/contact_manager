@@ -12,11 +12,11 @@
   </thead>
 
   <tbody>
-    <% @people.each do |person| %>
+    <% @people.each do |person| %>   <!-- where does @people come from? -->
       <tr>
         <td><%= person.first_name %></td>
         <td><%= person.last_name %></td>
-        <td><%= link_to 'Show', person %></td>
+        <td><%= link_to 'Show', person %></td>   <!-- doesn't this need a _path? Why can you just pass object? I'd like to see source code here-->
         <td><%= link_to 'Edit', edit_person_path(person) %></td>
         <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

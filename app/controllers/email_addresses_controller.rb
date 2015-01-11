@@ -14,7 +14,7 @@ class EmailAddressesController < ApplicationController
 
   # GET /email_addresses/new
   def new
-    @email_address = EmailAddress.new
+    @email_address = EmailAddress.new(person_id: params[:person_id])
   end
 
   # GET /email_addresses/1/edit
@@ -24,11 +24,11 @@ class EmailAddressesController < ApplicationController
   # POST /email_addresses
   # POST /email_addresses.json
   def create
-    @email_address = EmailAddress.new(email_address_params)
+    @email_address = EmailAddress.new(email_address_params)  #what is this new method doing behind the scenes?
 
     respond_to do |format|
       if @email_address.save
-        format.html { redirect_to @email_address, notice: 'Email address was successfully created.' }
+        format.html { redirect_to @email_address.person, notice: 'Email address was successfully created.' }  #what is redirect_to doing?
         format.json { render :show, status: :created, location: @email_address }
       else
         format.html { render :new }
@@ -41,8 +41,8 @@ class EmailAddressesController < ApplicationController
   # PATCH/PUT /email_addresses/1.json
   def update
     respond_to do |format|
-      if @email_address.update(email_address_params)
-        format.html { redirect_to @email_address, notice: 'Email address was successfully updated.' }
+      if @email_address.update(email_address_params)   #what is this update method? whatever it is, it needs an argument
+        format.html { redirect_to @email_address.person, notice: 'Email address was successfully updated.' }
         format.json { render :show, status: :ok, location: @email_address }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class EmailAddressesController < ApplicationController
   def destroy
     @email_address.destroy
     respond_to do |format|
-      format.html { redirect_to email_addresses_url, notice: 'Email address was successfully destroyed.' }
+      format.html { redirect_to @email_address.person, notice: 'Email address was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class EmailAddressesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_email_address
-      @email_address = EmailAddress.find(params[:id])
+      @email_address = EmailAddress.find(params[:id])   #params is very small here through the edit route
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
